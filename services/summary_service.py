@@ -3,19 +3,12 @@ Daily summary card generation.
 Calls ARK LLM (summary model) to produce a friendly text summary for the host.
 """
 import json
-import sys
 import time
 from typing import Dict, List
 
-from core.config import DIALOGUE_DIR
-from services.dialogue_service import _in_dialogue_dir
-
-# Import ARK client from dialogue/config.py (reuse the same client)
-_ensure_path = lambda: DIALOGUE_DIR not in sys.path and sys.path.insert(0, DIALOGUE_DIR)
-_ensure_path()
-
-with _in_dialogue_dir():
-    from config import ark_chat_client, MODEL_CONFIG  # noqa: E402
+# Import ARK client from dialogue package (dialogue/__init__.py bootstraps the path)
+import dialogue  # noqa: F401 — triggers sys.path setup
+from config import ark_chat_client, MODEL_CONFIG  # noqa: E402 — available after dialogue import
 
 _SUMMARY_MODEL = MODEL_CONFIG["summary_model"]
 

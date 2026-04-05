@@ -1,20 +1,12 @@
 """
-Wraps the dialogue/ module (LLM module — iceman_server/dialogue/).
+Adapts the dialogue package (iceman_server/dialogue/) for backend use.
 
-The dialogue/ module uses __file__-based absolute paths for all dataset I/O,
-so no CWD manipulation is needed here.
+Import style: `from dialogue import XxxManager` — treated as a proper package.
+sys.path bootstrapping is handled by dialogue/__init__.py, not here.
 """
-import sys
-import os
 from typing import List, Tuple
 
-# Ensure iceman_server/dialogue/ is importable
-_DIALOGUE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "dialogue")
-if _DIALOGUE_DIR not in sys.path:
-    sys.path.insert(0, _DIALOGUE_DIR)
-
-from user_dialogue import UserDialogueManager   # noqa: E402
-from privacy_manager import PrivacyManager      # noqa: E402
+from dialogue import UserDialogueManager, PrivacyManager
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────────

@@ -149,10 +149,61 @@ ai_chatting → host_takeover（主人点击接管，不可逆）
 
 ### dialogue/ 模块开发说明（@袁嘉豪）
 
-- 所有代码在 `dialogue/` 目录内开发
-- `config.py` 已修改为 `__file__` 绝对路径，不依赖 CWD，可直接 import
-- `services/dialogue_service.py` 是后端对 dialogue 模块的适配层，新增 LLM 能力后在此对接
-- **待实现**：问题 8 — 将主人与小冰人的最近 N 条对话纳入 `_generate_response()` 的 system prompt
+#### 模块集成方式
+
+`dialogue/` 作为一个 Python package 集成进 iceman_server，调用方式：
+
+```python
+# 后端 / 其他模块统一用 package import
+from dialogue import UserDialogueManager, MemoryManager, PrivacyManager
+
+# dialogue 内部文件保持 flat import 风格不变（无需修改）
+# from config import ark_chat_client   ← 内部文件原有写法，继续有效
+```
+
+`dialogue/__init__.py` 负责 sys.path 引导和 re-export，LLM 同学在 `dialogue/` 内按原有风格开发即可，新增的类/函数在 `__init__.py` 的 `__all__` 中注册。
+
+#### session 文件读取规范（重要）
+
+后端写入的 `dialogue/dataset/dialog_memory/session_*.json` 已迁移为规范 **messages 格式**：
+
+```python
+# ✅ 正确
+for msg in session["messages"]:
+    sender_type = msg["sender_type"]  # "Visitor" | "IceMan" | "Host" | "System"
+    content = msg["content"]
+
+# ❌ 旧字段已移除（会 KeyError）
+# session["conversation"]         # 已删除
+# session["should_show_to_host"]  # 已删除，改用 status != "filtered_blocked"
+```
+
+> ⚠️ 注意：`MemoryManager._load_memory()` 读取 `dialog_memory/` 下所有 `*.json`，包含 `session_*` 文件。`session_*` 无 `summary` 字段，`similarity_search()` 对其影响为空字符串 embedding（噪声）。扩展 `_load_memory()` 时建议按文件名前缀过滤。
+
+#### 待实现：PM Q8 — 主人历史对话纳入 Memory
+
+`_generate_response()` 的 system prompt 中追加主人近期发言：
+
+```python
+# dialog_memory/ 中 sender_type=Host 的消息就是主人发言
+for msg in session.get("messages", []):
+    if msg["sender_type"] == "Host":
+        # 追加到 system prompt 上下文
+```
+
+#### 后端调用约定
+
+```python
+# 后端只调 classify_intent() 一次，不调 process_user_input()
+# process_user_input() 内部会重复 classify_intent() → 双倍 LLM 调用
+intent = mgr.classify_intent(content)
+if intent == "INAPPROPRIATE_REQUEST":
+    reply = mgr._generate_inappropriate_response(content)
+elif intent == "PRIVACY_SENSITIVE":
+    reply = mgr._generate_privacy_protected_response(content)
+else:
+    reply = mgr._generate_response(content)
+```
 
 ---
 
