@@ -94,7 +94,7 @@ cd iceman_server
 | GET | `/iceman/v1/persona-templates` | 人设模板列表 |
 | GET | `/iceman/v1/videos` | 主人视频列表 |
 | GET | `/iceman/v1/conversations` | 访客会话列表（主人视角）|
-| POST | `/iceman/v1/conversations` | 新建/恢复当日会话 |
+| POST | `/iceman/v1/conversations` | 新建/恢复当日会话（新建时含小冰人开场语 `opening_msg`）|
 | GET | `/iceman/v1/conversations/{id}` | 会话详情 |
 | GET | `/iceman/v1/conversations/{id}/messages` | 消息历史 |
 | POST | `/iceman/v1/conversations/{id}/messages` | 发送消息（触发 LLM）|

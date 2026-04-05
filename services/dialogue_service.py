@@ -46,6 +46,18 @@ def classify_intent(content: str) -> str:
     return mgr.classify_intent(content)
 
 
+def generate_opening_greeting(owner_id: str, owner_videos: List[dict]) -> str:
+    """
+    Generate IceMan's opening greeting when a visitor enters the conversation.
+    Corresponds to Flow A/B: 小冰人发起破冰对话.
+    """
+    mgr = UserDialogueManager()
+    mgr.set_current_user(owner_id)
+    if owner_videos:
+        mgr.ensure_user_video_captions(owner_videos)
+    return mgr.trigger_dialogue()
+
+
 def handle_visitor_message(
     session: dict,
     content: str,

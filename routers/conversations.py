@@ -116,15 +116,36 @@ class StartSessionBody(BaseModel):
 def create_session(body: StartSessionBody, x_user_id: str = Header(...)):
     """
     Start (or resume today's) visitor session.
+    For new sessions: IceMan sends an opening greeting (破冰对话).
+    For resumed sessions: returns existing state with no extra message.
     For demo: owner is always DEFAULT_OWNER_ID.
     """
     cfg = get_iceman_config()
     visitor_id = body.visitor_id or x_user_id
     session = get_or_create_session(visitor_id, DEFAULT_OWNER_ID, cfg["iceman_id"])
+
+    opening_msg = None
+    is_new = not session.get("messages")
+    if is_new and cfg.get("status") == "enabled":
+        try:
+            owner_videos = get_videos_for_dialogue()
+            greeting = dialogue_service.generate_opening_greeting(DEFAULT_OWNER_ID, owner_videos)
+            iceman_msg = add_message(session, "IceMan", cfg["iceman_id"], greeting)
+            save_session(session)
+            opening_msg = {
+                "message_id":  iceman_msg["message_id"],
+                "sender_type": "IceMan",
+                "content":     greeting,
+                "timestamp":   iceman_msg["timestamp"],
+            }
+        except Exception as e:
+            print(f"[conversations] opening greeting failed: {e}")
+
     return ok({
-        "session_id": session["session_id"],
-        "status":     session["status"],
-        "date":       session["date"],
+        "session_id":   session["session_id"],
+        "status":       session["status"],
+        "date":         session["date"],
+        "opening_msg":  opening_msg,
     })
 
 
@@ -269,6 +290,7 @@ def send_message(
     session["status"] = new_status
     if new_status == "filtered_folded":
         session["is_folded"] = True
+        session["filter_reason"] = intent  # e.g. INAPPROPRIATE_REQUEST / PRIVACY_SENSITIVE
 
     # Save IceMan reply
     iceman_msg = add_message(session, "IceMan", iceman_id, reply)
