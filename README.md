@@ -12,6 +12,11 @@
 iceman_server/
 ├── app.py                      # FastAPI 入口，CORS + 路由注册
 ├── start.sh                    # 一键启动
+├── docs/                       # 设计文档（同步自项目根目录）
+│   ├── 设计文档+API文档.md       # API 规范 + 系统设计
+│   ├── 数据对齐文档.md           # 数据格式 + LLM 模块对齐
+│   ├── design_prototype_flow.svg    # 交互流程图（Lark 白板导出）
+│   └── design_prototype_mockups.svg # 高保真设计原型（Lark 白板导出）
 ├── environment.yml             # Conda 环境定义（iceman）
 ├── requirements.txt            # pip 依赖
 ├── .env.example                # 环境变量模板

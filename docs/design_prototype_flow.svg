@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2523" height="1349" viewBox="0 0 2523 1349">
+<rect width="100%" height="100%" fill="#f8f8f8"/>
+<defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#666"/></marker></defs>
+<style>text{font-family:"PingFang SC","Microsoft YaHei",Arial,sans-serif;}</style>
+<rect x="307.6" y="204.1" width="2165.7" height="1094.7" fill="#fff" stroke="#888" stroke-width="1"/>
+<text x="1390.5" y="751.4" text-anchor="middle" dominant-baseline="middle" font-size="12" fill="#888">[表格]</text>
+<polygon points="137.2,332.7 224.4,382.7 137.2,432.7 50.0,382.7" fill="#fccf51" fill-opacity="1.0" stroke="none"/>
+<text x="137.2" y="382.7" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#1f2329">LLM/VLM</text>
+<rect x="171.5" y="155.8" width="120.0" height="80.0" rx="8" fill="#eb6e49" fill-opacity="1.0" stroke="none"/>
+<text x="231.5" y="195.8" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#ffffff">用户进入对话</text>
+<rect x="543.9" y="155.8" width="120.0" height="80.0" rx="8" fill="#2271e0" fill-opacity="1.0" stroke="none"/>
+<text x="603.9" y="195.8" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#ffffff">小冰人发起对话</text>
+<polygon points="874.9,155.8 958.8,195.8 874.9,235.8 791.0,195.8" fill="#fccf51" fill-opacity="1.0" stroke="none"/>
+<text x="874.9" y="195.8" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#1f2329">用户应答</text>
+<polygon points="1162.6,155.8 1246.5,195.8 1162.6,235.8 1078.8,195.8" fill="#fccf51" fill-opacity="1.0" stroke="none"/>
+<text x="1162.6" y="195.8" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#1f2329">意图识别</text>
+<rect x="1366.5" y="155.8" width="120.0" height="80.0" rx="8" fill="#2271e0" fill-opacity="1.0" stroke="none"/>
+<text x="1426.5" y="195.8" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#ffffff">灵犀应答</text>
+<rect x="1366.5" y="50.0" width="120.0" height="80.0" rx="8" fill="#2271e0" fill-opacity="1.0" stroke="none"/>
+<text x="1426.5" y="90.0" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#ffffff">婉拒</text>
+<polygon points="1666.5,155.8 1726.5,195.8 1666.5,235.8 1606.5,195.8" fill="#fccf51" fill-opacity="1.0" stroke="none"/>
+<text x="1666.5" y="195.8" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#1f2329">用户接管</text>
+<rect x="1846.5" y="155.8" width="120.0" height="80.0" rx="8" fill="#eb6e49" fill-opacity="1.0" stroke="none"/>
+<text x="1906.5" y="195.8" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#ffffff">End</text>
+<polygon points="1015.6,332.7 1102.8,382.7 1015.6,432.7 928.4,382.7" fill="#fccf51" fill-opacity="1.0" stroke="none"/>
+<text x="1015.6" y="382.7" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#1f2329">LLM/VLM</text>
+<rect x="345.3" y="340.6" width="103.3" height="84.2" fill="#dcf8e6" fill-opacity="1.0" stroke="#58b67c" stroke-width="1" />
+<ellipse cx="397.0" cy="340.6" rx="51.7" ry="13.3" fill="#dcf8e6" fill-opacity="1.0" stroke="#58b67c" stroke-width="1" />
+<ellipse cx="397.0" cy="424.8" rx="51.7" ry="13.3" fill="#dcf8e6" fill-opacity="1.0" stroke="#58b67c" stroke-width="1" />
+<text x="397.0" y="373.3" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#1f2329">语料库</text>
+<text x="397.0" y="392.2" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#1f2329">专门存放开场白语料</text>
+<rect x="171.5" y="719.0" width="120.0" height="80.0" rx="8" fill="#eb6e49" fill-opacity="1.0" stroke="none"/>
+<text x="231.5" y="759.0" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#ffffff">小冰人发起对话</text>
+<polygon points="1923.2,770.3 2010.4,820.3 1923.2,870.3 1836.0,820.3" fill="#fccf51" fill-opacity="1.0" stroke="none"/>
+<text x="1923.2" y="820.3" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#1f2329">LLM总结内容</text>
+<rect x="1606.5" y="780.3" width="120.0" height="80.0" rx="8" fill="#eb6e49" fill-opacity="1.0" stroke="none"/>
+<text x="1666.5" y="820.3" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#ffffff">End</text>
+<polygon points="698.9,719.0 782.7,759.0 698.9,799.0 615.0,759.0" fill="#fccf51" fill-opacity="1.0" stroke="none"/>
+<text x="698.9" y="759.0" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#1f2329">用户应答</text>
+<rect x="1126.5" y="719.0" width="120.0" height="80.0" rx="8" fill="#2271e0" fill-opacity="1.0" stroke="none"/>
+<text x="1186.5" y="759.0" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#ffffff">灵犀回答</text>
+<rect x="171.5" y="923.6" width="120.0" height="80.0" rx="8" fill="#eb6e49" fill-opacity="1.0" stroke="none"/>
+<text x="231.5" y="963.6" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#ffffff">用户发起对话</text>
+<rect x="638.9" y="923.6" width="120.0" height="80.0" rx="8" fill="#2271e0" fill-opacity="1.0" stroke="none"/>
+<text x="698.9" y="963.6" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#ffffff">小冰人回答</text>
+<polygon points="1015.6,923.6 1099.4,963.6 1015.6,1003.6 931.7,963.6" fill="#fccf51" fill-opacity="1.0" stroke="none"/>
+<text x="1015.6" y="963.6" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#1f2329">用户应答</text>
+<rect x="171.5" y="557.3" width="120.0" height="80.0" rx="8" fill="#2271e0" fill-opacity="1.0" stroke="none"/>
+<text x="231.5" y="597.3" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#ffffff">用户公开作品</text>
+<rect x="1853.2" y="539.8" width="140.1" height="84.2" fill="#dcf8e6" fill-opacity="1.0" stroke="#58b67c" stroke-width="1" />
+<ellipse cx="1923.2" cy="539.8" rx="70.0" ry="13.3" fill="#dcf8e6" fill-opacity="1.0" stroke="#58b67c" stroke-width="1" />
+<ellipse cx="1923.2" cy="624.0" rx="70.0" ry="13.3" fill="#dcf8e6" fill-opacity="1.0" stroke="#58b67c" stroke-width="1" />
+<text x="1923.2" y="572.4" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#1f2329"> Memory</text>
+<text x="1923.2" y="591.3" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="normal" fill="#1f2329">对话记忆+近期作品+用户设置人格</text>
+<path d="M 224.4,382.7 L 345.3,382.7" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 291.5,195.8 L 543.9,195.8" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 663.9,195.8 L 791.0,195.8" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 448.6,382.7 L 603.9,382.7 L 603.9,235.8" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 958.8,195.8 L 1078.8,195.8" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 1246.5,195.8 L 1366.5,195.8" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 1102.8,382.7 L 1426.5,382.7 L 1426.5,235.8" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 1162.6,155.8 L 1162.6,90.0 L 1366.5,90.0" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 1426.5,235.8 L 1426.5,271.8 L 874.9,271.8 L 874.9,235.8" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 1486.5,195.8 L 1606.5,195.8" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 1726.5,195.8 L 1846.5,195.8" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 1486.5,90.0 L 1906.5,90.0 L 1906.5,155.8" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 171.5,597.3 L 137.2,597.3 L 137.2,432.7" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 231.5,557.3 L 231.5,479.1 L 1923.2,479.1 L 1923.2,526.5" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 231.5,637.3 L 231.5,719.0" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 1726.5,820.3 L 1836.0,820.3" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 291.5,759.0 L 615.0,759.0" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 782.7,759.0 L 1126.5,759.0" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 1186.5,719.0 L 1186.5,683.0 L 698.9,683.0 L 698.9,719.0" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 291.5,963.6 L 638.9,963.6" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 758.9,963.6 L 931.7,963.6" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 1015.6,923.6 L 1015.6,887.6 L 698.9,887.6 L 698.9,923.6" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 1099.4,963.6 L 1666.5,963.6 L 1666.5,860.3" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 698.9,799.0 L 698.9,820.3 L 1606.5,820.3" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 1923.2,770.3 L 1923.2,637.3" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+<path d="M 1853.2,581.9 L 1015.6,581.9 L 1015.6,432.7" fill="none" stroke="#bbbfc4" stroke-width="1"  marker-end="url(#arr)"/>
+</svg>
