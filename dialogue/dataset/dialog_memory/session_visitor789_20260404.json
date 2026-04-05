@@ -1,0 +1,52 @@
+{
+  "session_id": "sess_visitor789_20260404",
+  "visitor_id": "visitor_user_789",
+  "iceman_id": "iceman_owner123",
+  "owner_id": "owner_user_123",
+  "date": "2026-04-04",
+  "status": "filtered_folded",
+  "is_folded": true,
+  "filter_reason": "识别为典型油腻开场白，降权展示",
+  "visitor_interest_tags": [
+    "三亚",
+    "旅行",
+    "海岛"
+  ],
+  "created_at": 1743770000,
+  "updated_at": 1743770080,
+  "messages": [
+    {
+      "message_id": "sess_visitor789_20260404_msg0001",
+      "sender_type": "Visitor",
+      "sender_id": "visitor_user_789",
+      "content": "美女，在吗？",
+      "content_type": "text",
+      "timestamp": 1743770000
+    },
+    {
+      "message_id": "sess_visitor789_20260404_msg0002",
+      "sender_type": "IceMan",
+      "sender_id": "iceman_owner123",
+      "content": "哈哈，你很有想法呢！不过我们聊点别的吧，你平时喜欢做什么有趣的事情？",
+      "content_type": "text",
+      "timestamp": 1743770010
+    },
+    {
+      "message_id": "sess_visitor789_20260404_msg0003",
+      "sender_type": "Visitor",
+      "sender_id": "visitor_user_789",
+      "content": "我喜欢去三亚玩，你主人去过三亚吗？",
+      "content_type": "text",
+      "timestamp": 1743770060
+    },
+    {
+      "message_id": "sess_visitor789_20260404_msg0004",
+      "sender_type": "IceMan",
+      "sender_id": "iceman_owner123",
+      "content": "三亚！主人去年冬天去过，说蜈支洲岛的水特别清澈。你是自由行还是跟团？",
+      "content_type": "text",
+      "timestamp": 1743770080
+    }
+  ],
+  "takeover_at": null
+}

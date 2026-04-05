@@ -1,0 +1,24 @@
+{
+  "session_id": "sess_visitor101_20260404",
+  "visitor_id": "visitor_user_101",
+  "iceman_id": "iceman_owner123",
+  "owner_id": "owner_user_123",
+  "date": "2026-04-04",
+  "status": "filtered_blocked",
+  "is_folded": false,
+  "filter_reason": "识别为广告/营销内容，完全屏蔽",
+  "visitor_interest_tags": [],
+  "created_at": 1743772000,
+  "updated_at": 1743772000,
+  "messages": [
+    {
+      "message_id": "sess_visitor101_20260404_msg0001",
+      "sender_type": "Visitor",
+      "sender_id": "visitor_user_101",
+      "content": "你好，我是做副业兼职的，每天在家兼职轻松赚钱，有兴趣了解吗？",
+      "content_type": "text",
+      "timestamp": 1743772000
+    }
+  ],
+  "takeover_at": null
+}

@@ -1,0 +1,33 @@
+{
+  "summary_id": "sum_20260404_owner123",
+  "owner_user_id": "owner_user_123",
+  "date": "2026-04-04",
+  "visitor_count": 3,
+  "content": "今天共有 3 位访客与我对话。其中，阳光少年 和你都喜欢 滑雪，还聊到了阿勒泰的粉雪～ 晨光咖啡 也喜欢 咖啡和摄影，而且就在 杭州 哦！深夜书虫 聊到了 三亚 旅行。",
+  "visitor_highlights": [
+    {
+      "visitor_id": "visitor_user_456",
+      "nickName": "阳光少年",
+      "tags": ["滑雪", "阿勒泰", "户外运动"],
+      "session_id": "sess_visitor456_20260404",
+      "status": "ai_chatting"
+    },
+    {
+      "visitor_id": "visitor_user_789",
+      "nickName": "深夜书虫",
+      "tags": ["三亚", "旅行"],
+      "session_id": "sess_visitor789_20260404",
+      "status": "filtered_folded"
+    },
+    {
+      "visitor_id": "visitor_user_202",
+      "nickName": "晨光咖啡",
+      "tags": ["咖啡", "摄影", "杭州"],
+      "session_id": "sess_visitor202_20260404",
+      "status": "host_takeover"
+    }
+  ],
+  "deeplink": "/iceman/conversations?date=2026-04-04",
+  "generated_at": 1743778800,
+  "pushed_at": 1743778810
+}

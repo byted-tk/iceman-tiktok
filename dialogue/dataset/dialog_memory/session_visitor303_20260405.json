@@ -1,0 +1,32 @@
+{
+  "session_id": "sess_visitor303_20260405",
+  "visitor_id": "visitor_user_303",
+  "iceman_id": "iceman_owner123",
+  "owner_id": "owner_user_123",
+  "date": "2026-04-05",
+  "status": "ai_chatting",
+  "is_folded": false,
+  "takeover_at": null,
+  "messages": [
+    {
+      "message_id": "sess_visitor303_20260405_msg0001",
+      "sender_type": "Visitor",
+      "sender_id": "visitor_user_303",
+      "content": "你好！听说你主人喜欢摄影？我也超喜欢！",
+      "content_type": "text",
+      "timestamp": 1775392233
+    },
+    {
+      "message_id": "sess_visitor303_20260405_msg0002",
+      "sender_type": "IceMan",
+      "sender_id": "iceman_owner123",
+      "content": "哇太巧啦！主人最近特别迷拍城市夜景，刚发的这条就是他蹲点拍的呢～你平时喜欢拍什么题材呀？会不会也爱拍这种夜晚流光溢彩的氛围感呀😉",
+      "content_type": "text",
+      "timestamp": 1775392243
+    }
+  ],
+  "visitor_interest_tags": [],
+  "filter_reason": "",
+  "created_at": 1775392233,
+  "updated_at": 1775392243
+}

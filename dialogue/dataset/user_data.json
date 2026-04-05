@@ -1,0 +1,76 @@
+[
+  {
+    "open_id": "owner_user_123",
+    "nickName": "冬日暖阳",
+    "avatarUrl": "https://p3.douyinpic.com/aweme/720x720/avatar/owner_123.jpeg",
+    "gender": 1,
+    "country": "中国",
+    "province": "北京",
+    "city": "北京",
+    "language": "zh_CN",
+    "role": "host",
+    "interests": ["滑雪", "摄影", "咖啡"],
+    "bio": "喜欢在雪山上滑行，也喜欢在咖啡馆里发呆。",
+    "iceman_nickname": "小暖"
+  },
+  {
+    "open_id": "visitor_user_456",
+    "nickName": "阳光少年",
+    "avatarUrl": "https://p3.douyinpic.com/aweme/720x720/avatar/visitor_456.jpeg",
+    "gender": 1,
+    "country": "中国",
+    "province": "上海",
+    "city": "上海",
+    "language": "zh_CN",
+    "role": "visitor",
+    "interests": ["滑雪", "篮球", "旅行"]
+  },
+  {
+    "open_id": "visitor_user_789",
+    "nickName": "深夜书虫",
+    "avatarUrl": "https://p3.douyinpic.com/aweme/720x720/avatar/visitor_789.jpeg",
+    "gender": 2,
+    "country": "中国",
+    "province": "广东",
+    "city": "深圳",
+    "language": "zh_CN",
+    "role": "visitor",
+    "interests": ["阅读", "三亚", "美食"]
+  },
+  {
+    "open_id": "visitor_user_101",
+    "nickName": "路人甲",
+    "avatarUrl": "https://p3.douyinpic.com/aweme/720x720/avatar/visitor_101.jpeg",
+    "gender": 1,
+    "country": "中国",
+    "province": "四川",
+    "city": "成都",
+    "language": "zh_CN",
+    "role": "visitor",
+    "interests": ["游戏", "火锅"]
+  },
+  {
+    "open_id": "visitor_user_202",
+    "nickName": "晨光咖啡",
+    "avatarUrl": "https://p3.douyinpic.com/aweme/720x720/avatar/visitor_202.jpeg",
+    "gender": 2,
+    "country": "中国",
+    "province": "浙江",
+    "city": "杭州",
+    "language": "zh_CN",
+    "role": "visitor",
+    "interests": ["咖啡", "摄影", "徒步"]
+  },
+  {
+    "open_id": "visitor_user_303",
+    "nickName": "夏日柠檬茶",
+    "avatarUrl": "https://p3.douyinpic.com/aweme/720x720/avatar/visitor_303.jpeg",
+    "gender": 2,
+    "country": "中国",
+    "province": "湖北",
+    "city": "武汉",
+    "language": "zh_CN",
+    "role": "visitor",
+    "interests": ["旅行", "音乐", "舞蹈"]
+  }
+]

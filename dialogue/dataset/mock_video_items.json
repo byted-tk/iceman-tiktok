@@ -1,0 +1,71 @@
+{
+  "data": {
+    "item_list": [
+      {
+        "item_id": "1234567890123456789",
+        "title": "美丽的海滩日落",
+        "description": "分享一个美丽的海滩日落，希望大家喜欢！",
+        "cover_image_url": "https://p3.douyinpic.com/aweme/720x720/abc123.jpg",
+        "video_url": "https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v02c00g10000c3a123456789abcdef",
+        "author": {
+          "avatarUrl": "https://p3.douyinpic.com/aweme/720x720/aweme-avatar/tos-cn-i-0813c000-ce_oIGwDwXt6KsB97iTA0OAAc2yZFxgF7rFAAcYAAxqgAAOgA.jpeg?from=3782654142",
+          "nickName": "夏日柠檬茶",
+          "gender": 2,
+          "city": "上海",
+          "province": "上海",
+          "country": "中国"
+        },
+        "statistics": {
+          "view_count": 123456,
+          "like_count": 12345,
+          "comment_count": 1234,
+          "share_count": 123
+        }
+      },
+      {
+        "item_id": "9876543210987654321",
+        "title": "猫咪日常",
+        "description": "我家猫咪的可爱日常，太萌了！",
+        "cover_image_url": "https://p3.douyinpic.com/aweme/720x720/def456.jpg",
+        "video_url": "https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v02c00g10000c3b987654321fedcba",
+        "author": {
+          "avatarUrl": "https://p3.douyinpic.com/aweme/720x720/aweme-avatar/tos-cn-i-0813c000-ce_oIGwDwXt6KsB97iTA0OAAc2yZFxgF7rFAAcYAAxqgAAOgA.jpeg?from=3782654142",
+          "nickName": "冬日暖阳",
+          "gender": 1,
+          "city": "北京",
+          "province": "北京",
+          "country": "中国"
+        },
+        "statistics": {
+          "view_count": 987654,
+          "like_count": 98765,
+          "comment_count": 9876,
+          "share_count": 987
+        }
+      },
+      {
+        "item_id": "1357924680135792468",
+        "title": "城市夜景",
+        "description": "城市的夜景真美，一起来欣赏！",
+        "cover_image_url": "https://p3.douyinpic.com/aweme/720x720/ghi789.jpg",
+        "video_url": "https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v02c00g10000c3c135792468abcdef",
+        "author": {
+          "avatarUrl": "https://p3.douyinpic.com/aweme/720x720/aweme-avatar/tos-cn-i-0813c000-ce_oIGwDwXt6KsB97iTA0OAAc2yZFxgF7rFAAcYAAxqgAAOgA.jpeg?from=3782654142",
+          "nickName": "海风拂面",
+          "gender": 2,
+          "city": "深圳",
+          "province": "广东",
+          "country": "中国"
+        },
+        "statistics": {
+          "view_count": 543210,
+          "like_count": 54321,
+          "comment_count": 5432,
+          "share_count": 543
+        }
+      }
+    ]
+  },
+  "error_code": 0,
+  "description": "success"
+}

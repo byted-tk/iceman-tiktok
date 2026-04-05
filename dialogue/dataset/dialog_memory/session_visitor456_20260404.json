@@ -1,0 +1,68 @@
+{
+  "session_id": "sess_visitor456_20260404",
+  "visitor_id": "visitor_user_456",
+  "iceman_id": "iceman_owner123",
+  "owner_id": "owner_user_123",
+  "date": "2026-04-04",
+  "status": "host_takeover",
+  "is_folded": false,
+  "visitor_interest_tags": [
+    "滑雪",
+    "阿勒泰",
+    "户外运动"
+  ],
+  "created_at": 1743764400,
+  "updated_at": 1775392253,
+  "messages": [
+    {
+      "message_id": "sess_visitor456_20260404_msg0001",
+      "sender_type": "Visitor",
+      "sender_id": "visitor_user_456",
+      "content": "你好，听说你的主人滑雪很厉害？",
+      "content_type": "text",
+      "timestamp": 1743764400
+    },
+    {
+      "message_id": "sess_visitor456_20260404_msg0002",
+      "sender_type": "IceMan",
+      "sender_id": "iceman_owner123",
+      "content": "嗯嗯！主人最近在练刻蹬，上周末还去崇礼了，说终于找到雪感了～你也喜欢滑雪吗？",
+      "content_type": "text",
+      "timestamp": 1743764420
+    },
+    {
+      "message_id": "sess_visitor456_20260404_msg0003",
+      "sender_type": "Visitor",
+      "sender_id": "visitor_user_456",
+      "content": "哇真的吗！我也超喜欢滑雪的，去年去了阿勒泰，粉雪超棒！",
+      "content_type": "text",
+      "timestamp": 1743764460
+    },
+    {
+      "message_id": "sess_visitor456_20260404_msg0004",
+      "sender_type": "IceMan",
+      "sender_id": "iceman_owner123",
+      "content": "阿勒泰！！主人一直想去的！你是去将军山还是禾木那边？主人说阿勒泰的粉雪是梦中情雪哈哈。",
+      "content_type": "text",
+      "timestamp": 1743764480
+    },
+    {
+      "message_id": "sess_visitor456_20260404_msg0005",
+      "sender_type": "Visitor",
+      "sender_id": "visitor_user_456",
+      "content": "去了将军山，真的超棒，建议你们有机会一定要去！",
+      "content_type": "text",
+      "timestamp": 1743764520
+    },
+    {
+      "message_id": "sess_visitor456_20260404_msg0006",
+      "sender_type": "IceMan",
+      "sender_id": "iceman_owner123",
+      "content": "好的！我帮你记下了，一定告诉主人～你平时除了滑雪还喜欢什么运动？",
+      "content_type": "text",
+      "timestamp": 1743764540
+    }
+  ],
+  "takeover_at": 1775392253,
+  "filter_reason": ""
+}

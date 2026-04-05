@@ -1,0 +1,85 @@
+{
+  "session_id": "sess_visitor202_20260404",
+  "visitor_id": "visitor_user_202",
+  "iceman_id": "iceman_owner123",
+  "owner_id": "owner_user_123",
+  "date": "2026-04-04",
+  "status": "host_takeover",
+  "is_folded": false,
+  "takeover_at": 1743776000,
+  "visitor_interest_tags": [
+    "咖啡",
+    "摄影",
+    "杭州",
+    "胶片"
+  ],
+  "created_at": 1743773000,
+  "updated_at": 1743776200,
+  "messages": [
+    {
+      "message_id": "sess_visitor202_20260404_msg0001",
+      "sender_type": "Visitor",
+      "sender_id": "visitor_user_202",
+      "content": "你好！我也超喜欢咖啡和摄影，看到主人拍的那组咖啡店照片真的太美了",
+      "content_type": "text",
+      "timestamp": 1743773000
+    },
+    {
+      "message_id": "sess_visitor202_20260404_msg0002",
+      "sender_type": "IceMan",
+      "sender_id": "iceman_owner123",
+      "content": "哇，你也喜欢咖啡摄影！主人最近在研究用胶片机拍咖啡店，你用什么器材？",
+      "content_type": "text",
+      "timestamp": 1743773020
+    },
+    {
+      "message_id": "sess_visitor202_20260404_msg0003",
+      "sender_type": "Visitor",
+      "sender_id": "visitor_user_202",
+      "content": "我用的是索尼A7C，不过最近也想入手一台胶片机，请问主人用的是什么型号？",
+      "content_type": "text",
+      "timestamp": 1743773100
+    },
+    {
+      "message_id": "sess_visitor202_20260404_msg0004",
+      "sender_type": "IceMan",
+      "sender_id": "iceman_owner123",
+      "content": "主人用的是Contax G2！说画质特别有质感。你在哪个城市？杭州也有很多好看的咖啡店！",
+      "content_type": "text",
+      "timestamp": 1743773120
+    },
+    {
+      "message_id": "sess_visitor202_20260404_msg0005",
+      "sender_type": "Visitor",
+      "sender_id": "visitor_user_202",
+      "content": "对对对！我就在杭州！西湖边有好多宝藏咖啡馆～",
+      "content_type": "text",
+      "timestamp": 1743773200
+    },
+    {
+      "message_id": "sess_visitor202_20260404_msg0006",
+      "sender_type": "System",
+      "sender_id": "system",
+      "content": "主人觉得你很有趣，决定亲自和你聊聊～",
+      "content_type": "text",
+      "timestamp": 1743776000
+    },
+    {
+      "message_id": "sess_visitor202_20260404_msg0007",
+      "sender_type": "Host",
+      "sender_id": "owner_user_123",
+      "content": "哈哈好巧，我下个月刚好要去杭州，你能推荐几家好看的咖啡馆吗？",
+      "content_type": "text",
+      "timestamp": 1743776100
+    },
+    {
+      "message_id": "sess_visitor202_20260404_msg0008",
+      "sender_type": "Visitor",
+      "sender_id": "visitor_user_202",
+      "content": "当然！你一定要去南山路的「山水间」，光线超棒，特别适合拍照！",
+      "content_type": "text",
+      "timestamp": 1743776200
+    }
+  ],
+  "filter_reason": ""
+}

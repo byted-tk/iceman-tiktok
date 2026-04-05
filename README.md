@@ -1,0 +1,174 @@
+# iceman-server
+
+抖音小冰人 V1.0 后端服务（演示 MVP）
+
+> 后端 @王建峰 · LLM @袁嘉豪 · 设计文档见 `../设计文档+API文档.md`
+
+---
+
+## 目录结构
+
+```
+iceman_server/
+├── app.py                      # FastAPI 入口，CORS + 路由注册
+├── start.sh                    # 一键启动
+├── environment.yml             # Conda 环境定义（iceman）
+├── requirements.txt            # pip 依赖
+├── .env.example                # 环境变量模板
+│
+├── core/
+│   ├── config.py               # 全局路径常量（DATASET_DIR 等）
+│   └── response.py             # 统一响应格式 ok() / err()
+│
+├── services/
+│   ├── data_service.py         # JSON 文件 CRUD（用户、会话、视频等）
+│   ├── dialogue_service.py     # 封装 dialogue/ LLM 模块
+│   └── summary_service.py      # 每日总结生成（调 ARK LLM）
+│
+├── routers/
+│   ├── me.py                   # GET /iceman/v1/me
+│   ├── config_router.py        # /config · /persona-templates · /videos
+│   ├── conversations.py        # 会话 + 消息 + 接管（核心）
+│   └── summaries.py            # /summaries · /summaries/generate
+│
+└── dialogue/                   # LLM 模块（@袁嘉豪 继续在此开发）
+    ├── config.py               # ARK API 客户端 + 路径配置
+    ├── user_dialogue.py        # UserDialogueManager（访客对话 + 意图分类）
+    ├── host_dialogue.py        # HostDialogueManager（主人 IM 对话）
+    ├── memory.py               # MemoryManager（对话过滤 + Embedding 搜索）
+    ├── privacy_manager.py      # PrivacyManager（隐私保护回复）
+    ├── user_manager.py         # UserManager（用户信息 + 视频 caption）
+    ├── vlm.py                  # VLMManager（视频 → caption 生成）
+    ├── video_query.py          # 视频查询工具
+    └── dataset/                # 全部数据文件（JSON）
+        ├── user_data.json
+        ├── offline_corpus.json
+        ├── mock_api_response.json
+        ├── mock_video_items.json
+        ├── iceman_config.json
+        ├── dialog_memory/      # 会话存档（session_*.json）
+        ├── summary_cards/      # 每日总结卡片
+        ├── embedding_cache/    # Embedding 向量缓存（gitignored）
+        └── user_video_captions/ # VLM 生成的视频描述（gitignored）
+```
+
+---
+
+## 快速启动
+
+### 1. 创建 Conda 环境（首次）
+
+```bash
+conda env create -f environment.yml
+conda activate iceman
+```
+
+### 2. 配置 ARK API Key
+
+```bash
+cp .env.example .env
+# 编辑 .env，填入 ARK_API_KEY
+```
+
+### 3. 启动服务
+
+```bash
+cd iceman_server
+./start.sh
+```
+
+服务启动后：
+- API：`http://localhost:8080`
+- Swagger 文档：`http://localhost:8080/docs`
+
+---
+
+## API 一览
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| GET | `/health` | 健康检查 |
+| GET | `/iceman/v1/me` | 当前用户信息 |
+| GET | `/iceman/v1/config` | 小冰人配置 |
+| PUT | `/iceman/v1/config` | 更新配置（开关/改名/换人设）|
+| GET | `/iceman/v1/persona-templates` | 人设模板列表 |
+| GET | `/iceman/v1/videos` | 主人视频列表 |
+| GET | `/iceman/v1/conversations` | 访客会话列表（主人视角）|
+| POST | `/iceman/v1/conversations` | 新建/恢复当日会话 |
+| GET | `/iceman/v1/conversations/{id}` | 会话详情 |
+| GET | `/iceman/v1/conversations/{id}/messages` | 消息历史 |
+| POST | `/iceman/v1/conversations/{id}/messages` | 发送消息（触发 LLM）|
+| POST | `/iceman/v1/conversations/{id}/takeover` | 主人接管会话 |
+| PUT | `/iceman/v1/conversations/{id}/state` | 辅助状态操作 |
+| GET | `/iceman/v1/summaries` | 每日总结卡片列表 |
+| POST | `/iceman/v1/summaries/generate` | 手动生成每日总结 |
+
+### 身份传递
+
+所有接口通过 Header `X-User-Id` 传入 `open_id`，无 token 鉴权：
+
+```
+X-User-Id: owner_user_123    # 主人
+X-User-Id: visitor_user_456  # 访客
+```
+
+### 演示用账号
+
+| open_id | 昵称 | 角色 |
+|---------|------|------|
+| `owner_user_123` | 冬日暖阳 | 主人（host）|
+| `visitor_user_456` | 阳光少年 | 访客 |
+| `visitor_user_789` | 深夜书虫 | 访客 |
+| `visitor_user_202` | 晨光咖啡 | 访客 |
+| `visitor_user_303` | 夏日柠檬茶 | 访客 |
+
+---
+
+## 开发约定
+
+### 消息 Schema（唯一标准）
+
+```json
+{
+  "message_id": "sess_xxx_msg0001",
+  "sender_type": "Visitor | IceMan | Host | System",
+  "sender_id": "open_id 或 iceman_id 或 system",
+  "content": "消息内容",
+  "content_type": "text",
+  "timestamp": 1743764400
+}
+```
+
+### 会话 status 状态机
+
+```
+ai_chatting → filtered_folded（classify_intent 判定不当）
+ai_chatting → filtered_blocked（filter_conversation 离线判定为骚扰/广告）
+ai_chatting → host_takeover（主人点击接管，不可逆）
+```
+
+### dialogue/ 模块开发说明（@袁嘉豪）
+
+- 所有代码在 `dialogue/` 目录内开发
+- `config.py` 已修改为 `__file__` 绝对路径，不依赖 CWD，可直接 import
+- `services/dialogue_service.py` 是后端对 dialogue 模块的适配层，新增 LLM 能力后在此对接
+- **待实现**：问题 8 — 将主人与小冰人的最近 N 条对话纳入 `_generate_response()` 的 system prompt
+
+---
+
+## 统一响应格式
+
+```json
+{ "code": 0, "message": "success", "data": { ... } }
+{ "code": 40401, "message": "会话不存在", "data": null }
+```
+
+| code | 含义 |
+|------|------|
+| 0 | 成功 |
+| 40101 | 用户不存在 |
+| 40301 | 无法接管已屏蔽会话 |
+| 40302 | 会话已被接管 |
+| 40303 | 小冰人未开启 |
+| 40401 | 会话不存在 |
+| 50001 | LLM 调用失败 |

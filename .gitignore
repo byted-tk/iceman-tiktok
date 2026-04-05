@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+
+# Env
+.env
+*.env
+
+# Conda / venv
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated files (keep dataset structure, ignore cache/generated content)
+dialogue/dataset/embedding_cache/
+dialogue/dataset/user_video_captions/
+dialogue/dataset/video_captions.json
+
+# Logs
+*.log
