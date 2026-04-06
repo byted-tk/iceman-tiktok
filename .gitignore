@@ -28,6 +28,11 @@ Thumbs.db
 dialogue/dataset/embedding_cache/
 dialogue/dataset/user_video_captions/
 dialogue/dataset/video_captions.json
+dataset/
+
+# Runtime-generated session files (test/live data, not demo fixtures)
+dialogue/dataset/dialog_memory/session_visitor456_20260405.json
+dialogue/dataset/dialog_memory/session_visitor456_20260406.json
 
 # Logs
 *.log
