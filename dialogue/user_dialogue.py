@@ -91,6 +91,150 @@ class UserDialogueManager:
         import random
         return random.choice(self.offline_corpus.get("rejections", ["嗯～这个问题有点难倒我了，我们换个有趣的话题聊聊吧～"]))
     
+    def _get_recent_host_dialogues(self, limit: int = 10) -> str:
+        """获取主人最近的对话记录，用于了解主人的说话风格和状态"""
+        try:
+            import glob
+            
+            host_messages = []
+            memory_dir = STORAGE_PATH["dialog_memory"]
+            if not os.path.exists(memory_dir):
+                return ""
+                
+            # Iterate through all session files
+            for filepath in glob.glob(os.path.join(memory_dir, "session_*.json")):
+                try:
+                    with open(filepath, 'r', encoding='utf-8') as f:
+                        session = json.load(f)
+                        if session.get("owner_id") == self.current_user_id:
+                            msgs = session.get("messages", [])
+                            for i, m in enumerate(msgs):
+                                if m.get("sender_type") == "Host":
+                                    context_msg = msgs[i-1]["content"] if i > 0 else ""
+                                    host_messages.append({
+                                        "timestamp": m.get("timestamp", 0),
+                                        "context": context_msg,
+                                        "content": m.get("content", "")
+                                    })
+                except Exception:
+                    pass
+                    
+            # Sort by timestamp descending and take the top 'limit'
+            host_messages.sort(key=lambda x: x["timestamp"], reverse=True)
+            recent = host_messages[:limit]
+            
+            if not recent:
+                return ""
+                
+            # Format into string
+            formatted = "【主人近期真实对话记录，供参考其说话语气和风格】\n"
+            # Show chronological order for context flow
+            for msg in reversed(recent):
+                if msg["context"]:
+                    formatted += f"访客: {msg['context']}\n"
+                formatted += f"主人: {msg['content']}\n"
+                
+            return formatted
+        except Exception as e:
+            print(f"获取主人近期对话失败: {e}")
+            return ""
+
+    def _get_recent_host_dialogues(self, limit: int = 10) -> str:
+        """获取主人最近的对话记录，用于了解主人的说话风格和状态"""
+        try:
+            import glob
+            
+            host_messages = []
+            memory_dir = STORAGE_PATH["dialog_memory"]
+            if not os.path.exists(memory_dir):
+                return ""
+                
+            # Iterate through all session files
+            for filepath in glob.glob(os.path.join(memory_dir, "session_*.json")):
+                try:
+                    with open(filepath, 'r', encoding='utf-8') as f:
+                        session = json.load(f)
+                        if session.get("owner_id") == self.current_user_id:
+                            msgs = session.get("messages", [])
+                            for i, m in enumerate(msgs):
+                                if m.get("sender_type") == "Host":
+                                    context_msg = msgs[i-1]["content"] if i > 0 else ""
+                                    host_messages.append({
+                                        "timestamp": m.get("timestamp", 0),
+                                        "context": context_msg,
+                                        "content": m.get("content", "")
+                                    })
+                except Exception:
+                    pass
+                    
+            # Sort by timestamp descending and take the top 'limit'
+            host_messages.sort(key=lambda x: x["timestamp"], reverse=True)
+            recent = host_messages[:limit]
+            
+            if not recent:
+                return ""
+                
+            # Format into string
+            formatted = "【主人近期真实对话记录，供参考其说话语气和风格】\n"
+            # Show chronological order for context flow
+            for msg in reversed(recent):
+                if msg["context"]:
+                    formatted += f"访客: {msg['context']}\n"
+                formatted += f"主人: {msg['content']}\n"
+                
+            return formatted
+        except Exception as e:
+            print(f"获取主人近期对话失败: {e}")
+            return ""
+
+    def _get_recent_host_dialogues(self, limit: int = 10) -> str:
+        """获取主人最近的对话记录，用于了解主人的说话风格和状态"""
+        try:
+            import glob
+            
+            host_messages = []
+            memory_dir = STORAGE_PATH["dialog_memory"]
+            if not os.path.exists(memory_dir):
+                return ""
+                
+            # Iterate through all session files
+            for filepath in glob.glob(os.path.join(memory_dir, "session_*.json")):
+                try:
+                    with open(filepath, 'r', encoding='utf-8') as f:
+                        session = json.load(f)
+                        if session.get("owner_id") == self.current_user_id:
+                            msgs = session.get("messages", [])
+                            for i, m in enumerate(msgs):
+                                if m.get("sender_type") == "Host":
+                                    context_msg = msgs[i-1]["content"] if i > 0 else ""
+                                    host_messages.append({
+                                        "timestamp": m.get("timestamp", 0),
+                                        "context": context_msg,
+                                        "content": m.get("content", "")
+                                    })
+                except Exception:
+                    pass
+                    
+            # Sort by timestamp descending and take the top 'limit'
+            host_messages.sort(key=lambda x: x["timestamp"], reverse=True)
+            recent = host_messages[:limit]
+            
+            if not recent:
+                return ""
+                
+            # Format into string
+            formatted = "【主人近期真实对话记录，供参考其说话语气和风格】\n"
+            # Show chronological order for context flow
+            for msg in reversed(recent):
+                if msg["context"]:
+                    formatted += f"访客: {msg['context']}\n"
+                formatted += f"主人: {msg['content']}\n"
+                
+            return formatted
+        except Exception as e:
+            print(f"获取主人近期对话失败: {e}")
+            return ""
+
     def _generate_response(self, user_input: str) -> Optional[str]:
         """使用LLM生成回复"""
         try:
@@ -100,8 +244,11 @@ class UserDialogueManager:
             # 获取主人性格总结
             personality_summary = self._load_personality_summary()
             
+            # 获取主人近期对话记录
+            recent_host_dialogues = self._get_recent_host_dialogues(limit=10)
+            
             # 构建对话历史
-            system_prompt = f"你现在是一个社交助手小冰，负责代表主人与访客交流。请根据以下原则回应访客：\n1. 保持自然、友善的语气\n2. 保护主人隐私，不透露具体个人信息\n3. 通过视频内容和主人爱好等公共信息与访客建立有趣的连接\n4. 如果访客提出不当请求，礼貌而坚定地转移话题\n5. 展现主人的有趣一面，但保持适当距离\n6. 不要提供过多建议或指导，只需自然地回应访客即可\n7. 只围绕主人发布的视频作品和爱好等话题聊天，因为这是破冰的依据\n8. 回应风格应符合主人的性格特征\n主人发布的视频作品：{video_context}\n主人性格特点：{personality_summary}"
+            system_prompt = f"你现在是一个社交助手小冰，负责代表主人与访客交流。请根据以下原则回应访客：\n1. 保持自然、友善的语气\n2. 保护主人隐私，不透露具体个人信息\n3. 通过视频内容和主人爱好等公共信息与访客建立有趣的连接\n4. 如果访客提出不当请求，礼貌而坚定地转移话题\n5. 展现主人的有趣一面，但保持适当距离\n6. 不要提供过多建议或指导，只需自然地回应访客即可\n7. 只围绕主人发布的视频作品和爱好等话题聊天，因为这是破冰的依据\n8. 回应风格应符合主人的性格特征\n主人发布的视频作品：{video_context}\n主人性格特点：{personality_summary}\n 对话历史memory：{recent_host_dialogues}"
 
             # 添加历史对话记录
             messages = [

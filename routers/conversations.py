@@ -66,6 +66,87 @@ def _sender_display_name(sender_type: str, sender_id: str, cfg: dict) -> str:
 
 # ── Conversation list & detail ────────────────────────────────────────────────
 
+@router.get("/iceman/v1/host-dialogue/messages")
+def get_host_dialogue_messages(
+    x_user_id: str = Header(...),
+    limit: int = Query(10),
+):
+    """Return the recent N messages sent by the Host to learn their speaking style."""
+    sessions = list_sessions(x_user_id)
+    host_messages = []
+    
+    # Collect all messages where sender_type == 'Host'
+    for s in sessions:
+        msgs = s.get("messages", [])
+        for i, m in enumerate(msgs):
+            if m.get("sender_type") == "Host":
+                # Find the preceding message for context if possible
+                context_msg = msgs[i-1]["content"] if i > 0 else ""
+                host_messages.append({
+                    "session_id": s["session_id"],
+                    "timestamp": m.get("timestamp", 0),
+                    "context": context_msg,
+                    "content": m.get("content", ""),
+                })
+                
+    # Sort by timestamp descending and take the top 'limit'
+    host_messages.sort(key=lambda x: x["timestamp"], reverse=True)
+    return ok({"messages": host_messages[:limit]})
+
+@router.get("/iceman/v1/host-dialogue/messages")
+def get_host_dialogue_messages(
+    x_user_id: str = Header(...),
+    limit: int = Query(10),
+):
+    """Return the recent N messages sent by the Host to learn their speaking style."""
+    sessions = list_sessions(x_user_id)
+    host_messages = []
+    
+    # Collect all messages where sender_type == 'Host'
+    for s in sessions:
+        msgs = s.get("messages", [])
+        for i, m in enumerate(msgs):
+            if m.get("sender_type") == "Host":
+                # Find the preceding message for context if possible
+                context_msg = msgs[i-1]["content"] if i > 0 else ""
+                host_messages.append({
+                    "session_id": s["session_id"],
+                    "timestamp": m.get("timestamp", 0),
+                    "context": context_msg,
+                    "content": m.get("content", ""),
+                })
+                
+    # Sort by timestamp descending and take the top 'limit'
+    host_messages.sort(key=lambda x: x["timestamp"], reverse=True)
+    return ok({"messages": host_messages[:limit]})
+
+@router.get("/iceman/v1/host-dialogue/messages")
+def get_host_dialogue_messages(
+    x_user_id: str = Header(...),
+    limit: int = Query(10),
+):
+    """Return the recent N messages sent by the Host to learn their speaking style."""
+    sessions = list_sessions(x_user_id)
+    host_messages = []
+    
+    # Collect all messages where sender_type == 'Host'
+    for s in sessions:
+        msgs = s.get("messages", [])
+        for i, m in enumerate(msgs):
+            if m.get("sender_type") == "Host":
+                # Find the preceding message for context if possible
+                context_msg = msgs[i-1]["content"] if i > 0 else ""
+                host_messages.append({
+                    "session_id": s["session_id"],
+                    "timestamp": m.get("timestamp", 0),
+                    "context": context_msg,
+                    "content": m.get("content", ""),
+                })
+                
+    # Sort by timestamp descending and take the top 'limit'
+    host_messages.sort(key=lambda x: x["timestamp"], reverse=True)
+    return ok({"messages": host_messages[:limit]})
+
 @router.get("/iceman/v1/conversations")
 def list_conversations(
     x_user_id: str = Header(...),
