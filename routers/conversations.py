@@ -16,8 +16,10 @@ from core.config import DEFAULT_ICEMAN_ID, DEFAULT_OWNER_ID
 from core.response import err, ok
 from services import dialogue_service
 from services.data_service import (
+    add_host_dialogue_message,
     add_message,
     get_all_users,
+    get_host_dialogue_session,
     get_iceman_config,
     get_or_create_session,
     get_session_by_id,
@@ -25,6 +27,7 @@ from services.data_service import (
     get_user,
     get_videos_for_dialogue,
     list_sessions,
+    save_host_dialogue_session,
     save_session,
 )
 
@@ -62,6 +65,57 @@ def _sender_display_name(sender_type: str, sender_id: str, cfg: dict) -> str:
         return "系统"
     u = get_user(sender_id)
     return u.get("nickName", sender_id) if u else sender_id
+
+
+# ── Host ↔ IceMan private dialogue ───────────────────────────────────────────
+
+@router.get("/iceman/v1/host-dialogue")
+def get_host_dialogue(x_user_id: str = Header(...), limit: int = Query(50)):
+    """Return host↔IceMan private dialogue history."""
+    cfg = get_iceman_config()
+    session = get_host_dialogue_session(x_user_id, cfg["iceman_id"])
+    msgs = session.get("messages", [])
+    return ok({"messages": msgs[-limit:]})
+
+
+@router.post("/iceman/v1/host-dialogue")
+def send_host_dialogue_message(body: SendMessageBody, x_user_id: str = Header(...)):
+    """
+    Host sends a message to IceMan (private host↔IceMan conversation).
+    IceMan replies using HostDialogueManager (LLM).
+    """
+    cfg = get_iceman_config()
+    owner_id = cfg["owner_user_id"]
+
+    if x_user_id != owner_id:
+        return err(40301, "仅主人可发起与小冰人的对话")
+
+    session = get_host_dialogue_session(owner_id, cfg["iceman_id"])
+
+    # Save host message first
+    host_msg = add_host_dialogue_message(session, "Host", x_user_id, body.content)
+
+    # Generate IceMan reply via LLM
+    owner_videos = get_videos_for_dialogue()
+    try:
+        reply = dialogue_service.handle_host_message(session, body.content, owner_videos)
+    except Exception as e:
+        print(f"[host-dialogue] LLM error: {e}")
+        reply = "嗯，我遇到了点小问题，稍后再聊～"
+
+    iceman_msg = add_host_dialogue_message(session, "IceMan", cfg["iceman_id"], reply)
+    save_host_dialogue_session(session)
+
+    return ok({
+        "message_id": host_msg["message_id"],
+        "timestamp":  host_msg["timestamp"],
+        "ai_reply": {
+            "message_id":  iceman_msg["message_id"],
+            "sender_type": "IceMan",
+            "content":     reply,
+            "timestamp":   iceman_msg["timestamp"],
+        },
+    })
 
 
 # ── Conversation list & detail ────────────────────────────────────────────────

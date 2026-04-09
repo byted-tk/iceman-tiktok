@@ -6,7 +6,7 @@ sys.path bootstrapping is handled by dialogue/__init__.py, not here.
 """
 from typing import List, Tuple
 
-from dialogue import UserDialogueManager, PrivacyManager
+from dialogue import UserDialogueManager, HostDialogueManager, PrivacyManager
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
@@ -89,3 +89,34 @@ def handle_visitor_message(
 
     reply = reply or "嗯，让我想想…"
     return reply, new_status, intent
+
+
+def handle_host_message(
+    session: dict,
+    content: str,
+    owner_videos: List[dict],
+) -> str:
+    """
+    Host → IceMan private dialogue handler.
+    Uses HostDialogueManager; loads existing chat history from the session.
+
+    Returns:
+        reply – AI-generated reply text
+    """
+    mgr = HostDialogueManager()
+    mgr.set_current_user(session["owner_id"])
+    if owner_videos:
+        mgr.ensure_user_video_captions(owner_videos)
+
+    # Reconstruct dialogue history (Host = user, IceMan = assistant)
+    history = []
+    for msg in session.get("messages", []):
+        st = msg.get("sender_type", "")
+        if st == "Host":
+            history.append({"role": "user", "content": msg["content"]})
+        elif st == "IceMan":
+            history.append({"role": "assistant", "content": msg["content"]})
+    mgr.dialog_history = history
+
+    reply, _ = mgr.process_host_input(content)
+    return reply or "好的，我明白了。"

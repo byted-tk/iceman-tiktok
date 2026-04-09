@@ -179,6 +179,50 @@ def add_message(
     return msg
 
 
+# ── Host ↔ IceMan private dialogue ─────────────────────────────────────────
+
+def _host_dialogue_filepath(owner_id: str) -> str:
+    return os.path.join(DIALOG_MEMORY_DIR, f"host_dialogue_{_short_id(owner_id)}.json")
+
+
+def get_host_dialogue_session(owner_id: str, iceman_id: str) -> Dict:
+    """Return the persistent host↔IceMan dialogue session (create if missing)."""
+    os.makedirs(DIALOG_MEMORY_DIR, exist_ok=True)
+    fpath = _host_dialogue_filepath(owner_id)
+    session = _read_json(fpath)
+    if session is None:
+        session = {
+            "owner_id": owner_id,
+            "iceman_id": iceman_id,
+            "messages": [],
+            "created_at": int(time.time()),
+            "updated_at": int(time.time()),
+        }
+    return session
+
+
+def save_host_dialogue_session(session: Dict) -> None:
+    session["updated_at"] = int(time.time())
+    _write_json(_host_dialogue_filepath(session["owner_id"]), session)
+
+
+def add_host_dialogue_message(
+    session: Dict, sender_type: str, sender_id: str, content: str
+) -> Dict:
+    seq = len(session.get("messages", [])) + 1
+    short = _short_id(session["owner_id"])
+    msg = {
+        "message_id": f"host_dialogue_{short}_msg{seq:04d}",
+        "sender_type": sender_type,
+        "sender_id": sender_id,
+        "content": content,
+        "content_type": "text",
+        "timestamp": int(time.time()),
+    }
+    session.setdefault("messages", []).append(msg)
+    return msg
+
+
 # ── Videos ──────────────────────────────────────────────────────────────────
 
 def get_videos_for_frontend() -> List[Dict]:
