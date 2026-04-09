@@ -28,7 +28,7 @@ if not _ARK_API_KEY:
     )
 
 ark_chat_client = OpenAI(
-    base_url="https://ark-cn-beijing.bytedance.net/api/v3",
+    base_url="https://ark.cn-beijing.volces.com/api/v3",
     api_key=_ARK_API_KEY,
 )
 ark_emb_client = Ark(
