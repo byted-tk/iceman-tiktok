@@ -45,7 +45,11 @@ class HostDialogueManager:
                 model="ep-20260302134345-wxvcm",
                 messages=messages,
                 temperature=0.8,
-                max_tokens=500
+                max_tokens=500,
+                extra_body={
+        "caching": {"type": "enabled", "prefix": True},
+        "thinking":{"type":"disabled"}
+    }
             )
             
             response_content = response.choices[0].message.content
@@ -85,7 +89,12 @@ class HostDialogueManager:
                 model="ep-20260302134345-wxvcm",
                 messages=messages,
                 temperature=0.8,
-                max_tokens=500
+                max_tokens=500,
+                extra_body={
+        "caching": {"type": "enabled", "prefix": True},
+        "thinking":{"type":"disabled"}
+    }
+
             )
             
             response_content = response.choices[0].message.content
@@ -173,7 +182,12 @@ class HostDialogueManager:
                 model="ep-20260302134345-wxvcm",
                 messages=messages,
                 temperature=0.7,
-                max_tokens=500
+                max_tokens=500,
+                extra_body={
+        "caching": {"type": "enabled", "prefix": True},
+        "thinking":{"type":"disabled"}
+    }
+
             )
             
             response_content = response.choices[0].message.content
@@ -198,7 +212,12 @@ class HostDialogueManager:
                 model="ep-20260204154655-d2hc7",  # 使用总结专用模型
                 messages=messages,
                 temperature=0.3,
-                max_tokens=300
+                max_tokens=300,
+                extra_body={
+        "caching": {"type": "enabled", "prefix": True},
+        "thinking":{"type":"disabled"}
+    }
+
             )
             
             summary = response.choices[0].message.content
@@ -270,7 +289,12 @@ class HostDialogueManager:
                 model="ep-20260302134345-wxvcm",
                 messages=messages,
                 temperature=0.5,
-                max_tokens=300
+                max_tokens=300,
+                extra_body={
+        "caching": {"type": "enabled", "prefix": True},
+        "thinking":{"type":"disabled"}
+    }
+
             )
             
             return response.choices[0].message.content.strip()
