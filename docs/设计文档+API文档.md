@@ -723,7 +723,105 @@ Header: X-User-Id: visitor_user_456  # 访客身份
 
 ***
 
-### 4.8 其他工具接口
+### 4.8 主人↔小冰人私聊接口
+
+主人与小冰人之间的私聊通道，独立于访客会话。小冰人通过 `HostDialogueManager` 调用 ARK LLM 生成回复，对话历史持久化至 `dialog_memory/host_dialogue_{owner_id}.json`。
+
+#### `GET /iceman/v1/host-dialogue`
+
+获取主人↔小冰人私聊历史。
+
+**请求参数**：`limit`（可选，默认 50）
+
+**响应**：
+
+```json
+{
+  "code": 0,
+  "data": {
+    "messages": [
+      {
+        "message_id": "host_dialogue_owner123_msg0001",
+        "sender_type": "Host",
+        "sender_id": "owner_user_123",
+        "content": "最近有哪些访客比较有趣？",
+        "content_type": "text",
+        "timestamp": 1743764400
+      },
+      {
+        "message_id": "host_dialogue_owner123_msg0002",
+        "sender_type": "IceMan",
+        "sender_id": "iceman_owner123",
+        "content": "昨天有个叫阳光少年的访客，聊起了你的户外视频，很感兴趣呢～",
+        "content_type": "text",
+        "timestamp": 1743764405
+      }
+    ]
+  }
+}
+```
+
+---
+
+#### `POST /iceman/v1/host-dialogue`
+
+主人发消息给小冰人，触发 LLM 生成回复。
+
+**请求 Header**：`X-User-Id: owner_user_123`（仅主人可调用）
+
+**请求 Body**：
+
+```json
+{ "content": "今天有哪些访客值得我关注？", "content_type": "text" }
+```
+
+**响应**：
+
+```json
+{
+  "code": 0,
+  "data": {
+    "message_id": "host_dialogue_owner123_msg0003",
+    "timestamp": 1743764500,
+    "ai_reply": {
+      "message_id": "host_dialogue_owner123_msg0004",
+      "sender_type": "IceMan",
+      "content": "有一位访客和你聊了很久摄影话题，互动很积极，建议你亲自看看～",
+      "timestamp": 1743764503
+    }
+  }
+}
+```
+
+---
+
+#### `GET /iceman/v1/host-dialogue/messages`
+
+获取主人在各访客会话中的发言记录（用于风格学习，非私聊历史）。
+
+**请求参数**：`limit`（可选，默认 10）
+
+**响应**：
+
+```json
+{
+  "code": 0,
+  "data": {
+    "messages": [
+      {
+        "session_id": "sess_visitor456_20260409",
+        "timestamp": 1743764300,
+        "context": "访客上一条消息内容",
+        "content": "主人的发言内容"
+      }
+    ]
+  }
+}
+```
+
+***
+
+### 4.9 其他工具接口
 
 #### `GET /iceman/v1/conversations/{session_id}/potential-connection`
 
