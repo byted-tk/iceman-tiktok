@@ -18,13 +18,22 @@ MODEL_CONFIG = {
 }
 
 # API客户端初始化
+# ARK_API_KEY 优先从环境变量读取，也可在项目根目录创建 .env 文件（由 start_server.sh 自动加载）
+_ARK_API_KEY = os.getenv('ARK_API_KEY')
+if not _ARK_API_KEY:
+    raise RuntimeError(
+        "ARK_API_KEY 未设置。\n"
+        "方式1（推荐）: export ARK_API_KEY=<your-key>\n"
+        "方式2: 在项目根目录创建 .env 文件，写入 ARK_API_KEY=<your-key>"
+    )
+
 ark_chat_client = OpenAI(
     base_url="https://ark-cn-beijing.bytedance.net/api/v3",
-    api_key=os.getenv('ARK_API_KEY',"3db4dbc3-d5be-4567-a3bd-350828dc70ba")
+    api_key=_ARK_API_KEY,
 )
 ark_emb_client = Ark(
     base_url="https://ark.cn-beijing.volces.com/api/v3",
-    api_key=os.getenv('ARK_API_KEY',"3db4dbc3-d5be-4567-a3bd-350828dc70ba")
+    api_key=_ARK_API_KEY,
 )
 
 # 存储路径配置（使用 __file__ 绝对路径，不依赖 CWD）

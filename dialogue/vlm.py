@@ -3,10 +3,12 @@ from config import ark_chat_client
 import json
 import os
 
+_DIALOGUE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 class VLMManager:
     def __init__(self):
         # 视频caption存储路径
-        self.caption_storage = "./dataset/video_captions.json"
+        self.caption_storage = os.path.join(_DIALOGUE_DIR, "dataset", "video_captions.json")
         # 加载现有caption
         self.captions = self._load_captions()
     

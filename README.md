@@ -9,9 +9,11 @@
 ## 目录结构
 
 ```
-iceman_server/
+./  （项目根目录即服务根目录）
 ├── app.py                      # FastAPI 入口，CORS + 路由注册
-├── start.sh                    # 一键启动
+├── start_server.sh             # nohup 后台启动（推荐）
+├── start.sh                    # 前台启动（开发调试）
+├── stop_server.sh              # 停止服务
 ├── docs/                       # 设计文档（同步自项目根目录）
 │   ├── 设计文档+API文档.md       # API 规范 + 系统设计
 │   ├── 数据对齐文档.md           # 数据格式 + LLM 模块对齐
@@ -70,15 +72,24 @@ conda activate iceman
 
 ### 2. 配置 ARK API Key
 
+**方式1（推荐，适合部署）**：直接设置环境变量
+
+```bash
+export ARK_API_KEY=<your-key>
+```
+
+**方式2（本地开发）**：创建 `.env` 文件，`start_server.sh` 启动时自动加载
+
 ```bash
 cp .env.example .env
-# 编辑 .env，填入 ARK_API_KEY
+# 编辑 .env，填入 ARK_API_KEY=<your-key>
 ```
 
 ### 3. 启动服务
 
 ```bash
-cd iceman_server
+./start_server.sh        # 后台 nohup 启动，日志写入 pw/server.log
+# 或前台启动（开发调试用）：
 ./start.sh
 ```
 
@@ -156,7 +167,7 @@ ai_chatting → host_takeover（主人点击接管，不可逆）
 
 #### 模块集成方式
 
-`dialogue/` 作为一个 Python package 集成进 iceman_server，调用方式：
+`dialogue/` 作为一个 Python package 集成进后端服务，调用方式：
 
 ```python
 # 后端 / 其他模块统一用 package import

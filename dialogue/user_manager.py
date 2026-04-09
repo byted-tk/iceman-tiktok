@@ -4,11 +4,13 @@ import re
 from typing import Dict, List, Optional
 from vlm import VLMManager
 
+_DIALOGUE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 class UserManager:
     def __init__(self):
         self.vlm_manager = VLMManager()
         # 确保用户视频字幕目录存在
-        self.user_captions_dir = "./dataset/user_video_captions"
+        self.user_captions_dir = os.path.join(_DIALOGUE_DIR, "dataset", "user_video_captions")
         os.makedirs(self.user_captions_dir, exist_ok=True)
     
     def _sanitize_filename(self, filename: str) -> str:
@@ -25,7 +27,7 @@ class UserManager:
     def get_user_by_id(self, user_open_id: str) -> Optional[Dict]:
         """根据ID获取用户信息"""
         # 从用户数据文件中查找用户
-        user_data_file = "./dataset/user_data.json"
+        user_data_file = os.path.join(_DIALOGUE_DIR, "dataset", "user_data.json")
         if os.path.exists(user_data_file):
             with open(user_data_file, 'r', encoding='utf-8') as f:
                 data = json.load(f)
