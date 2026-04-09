@@ -118,6 +118,9 @@ cp .env.example .env
 | PUT | `/iceman/v1/conversations/{id}/state` | 辅助状态操作 |
 | GET | `/iceman/v1/summaries` | 每日总结卡片列表 |
 | POST | `/iceman/v1/summaries/generate` | 手动生成每日总结 |
+| GET | `/iceman/v1/host-dialogue` | 主人↔小冰人私聊历史 |
+| POST | `/iceman/v1/host-dialogue` | 主人发消息给小冰人（触发 LLM 回复）|
+| GET | `/iceman/v1/host-dialogue/messages` | 主人在访客会话中的发言记录（供风格学习）|
 
 ### 身份传递
 
